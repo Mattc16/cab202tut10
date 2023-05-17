@@ -48,6 +48,9 @@ int main(void) {
      */
     STATE state = OFF;
 
+    PORTB.OUTSET = PIN5_bm;
+    PORTB.DIRSET = PIN5_bm;
+
 
     // Write your code for Ex 10.1 above this line
     uint8_t pb = 0xFF;
@@ -102,6 +105,7 @@ int main(void) {
         case CONFIRM_ON:
             if (pb_falling & PIN5_bm) {
                 state = ON;
+                PORTB.OUTCLR = PIN5_bm;
             } else if (pb_falling & (PIN4_bm | PIN6_bm | PIN7_bm)) {
                 state = OFF;
             }
@@ -109,6 +113,7 @@ int main(void) {
         case CONFIRM_OFF:
             if (pb_falling & PIN7_bm) {
                 state = OFF;
+                PORTB.OUTSET = PIN5_bm;
             } else if (pb_falling & (PIN4_bm | PIN5_bm | PIN6_bm)) {
                 state = ON;
             }

@@ -29,7 +29,7 @@ ISR(TCB0_INT_vect) {
     count1 = (count1 ^ count0) & pb_changed;
     count0 = ~count0 & pb_changed;
 
-    pb_state^= (count1 & count0);
+    pb_state ^= (count1 & count0);
 
     TCB0.INTFLAGS = TCB_CAPT_bm;        // Acknowledge interrupt
 }
